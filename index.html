@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Verbs Flashcards</title>
+    <style>
+        :root {
+            --permission: #4285f4;
+            --obligation: #ea4335;
+            --advice: #34a853;
+            --ability: #fbbc05;
+            --deduction: #9c27b0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .flashcard {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flashcard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .permission { border-color: var(--permission); }
+        .obligation { border-color: var(--obligation); }
+        .advice { border-color: var(--advice); }
+        .ability { border-color: var(--ability); }
+        .deduction { border-color: var(--deduction); }
+        
+        .flashcard-header {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .flashcard-header .emoji {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .question {
+            color: #4a5568;
+            font-weight: 500;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .answer {
+            background: #ebf8ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #4299e1;
+        }
+        
+        .explanation {
+            background: #f0fff4;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #48bb78;
+        }
+        
+        .examples {
+            background: #fff5f5;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #f56565;
+        }
+        
+        .modal-verb {
+            font-weight: 700;
+            color: #2b6cb0;
+        }
+        
+        .check {
+            color: #48bb78;
+            margin-right: 5px;
+        }
+        
+        .example-item {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .example-item:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #718096;
+        }
+        
+        .time-label {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Modal Verbs Flashcards</h1>
+    
+    <div class="flashcards-container">
+        <!-- Permission Card -->
+        <div class="flashcard permission" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🔵</span> Permissão
+            </div>
+            <div class="content">
+                <div class="question">Como pedir permissão de forma educada usando um modal verb?</div>
+                <div class="content">
+                    <div class="answer">Use <span class="modal-verb">Can I...?</span> (informal) ou <span class="modal-verb">May I...?</span> (formal)</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="modal-verb">Can</span> → Para situações informais com amigos/família</p>
+                            <p><span class="check">✅</span> <span class="modal-verb">May</span> → Para situações formais (professores, chefes)</p>
+                            <p><span class="check">✅</span> <span class="modal-verb">Could</span> → Versão mais educada e neutra</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "<span class="modal-verb">Can</span> I borrow your book?" (📚 informal)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Futuro</span> "<span class="modal-verb">May</span> I leave early tomorrow?" (⏰ formal)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "She <span class="modal-verb">could</span> visit her friend last weekend." (👯♀️ permissão passada)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Obligation Card -->
+        <div class="flashcard obligation" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟡</span> Obrigação
+            </div>
+            <div class="content">
+                <div class="question">Quais modals verbs expressam obrigação forte?</div>
+                <div class="content">
+                    <div class="answer"><span class="modal-verb">Must</span> (pessoal) ou <span class="modal-verb">Have to</span> (externa)</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="modal-verb">Must</span> → Quando você acredita que algo é necessário</p>
+                            <p><span class="check">✅</span> <span class="modal-verb">Have to</span> → Quando existe uma regra ou lei externa</p>
+                            <p><span class="check">⚠️</span> No passado, usamos <span class="modal-verb">had to</span> para ambos</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "You <span class="modal-verb">must</span> tell the truth." (💬 obrigação moral)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Futuro</span> "We <span class="modal-verb">will have to</span> show ID at the airport." (🛂 regra futura)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "He <span class="modal-verb">had to</span> work late yesterday." (🏢 obrigação passada)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Advice Card -->
+        <div class="flashcard advice" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟢</span> Conselho
+            </div>
+            <div class="content">
+                <div class="question">Como dar conselhos usando modal verbs?</div>
+                <div class="content">
+                    <div class="answer">Use <span class="modal-verb">Should</span> (comum) ou <span class="modal-verb">Ought to</span> (formal)</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="modal-verb">Should</span> → O mais usado no dia a dia</p>
+                            <p><span class="check">✅</span> <span class="modal-verb">Ought to</span> → Mais formal e menos comum</p>
+                            <p><span class="check">⚠️</span> Para conselhos no passado: <span class="modal-verb">should have</span> + particípio</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "You <span class="modal-verb">should</span> drink more water." (💧 conselho simples)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Futuro</span> "She <span class="modal-verb">ought to</span> see a doctor soon." (🏥 conselho formal)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "They <span class="modal-verb">should have</span> studied more." (📖 arrependimento)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ability Card -->
+        <div class="flashcard ability" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟠</span> Habilidade
+            </div>
+            <div class="content">
+                <div class="question">Como expressar habilidade no passado?</div>
+                <div class="content">
+                    <div class="answer"><span class="modal-verb">Could</span> (geral) ou <span class="modal-verb">was/were able to</span> (específico)</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="modal-verb">Could</span> → Habilidades gerais no passado</p>
+                            <p><span class="check">✅</span> <span class="modal-verb">Was/Were able to</span> → Para ações específicas concluídas</p>
+                            <p><span class="check">⚠️</span> No negativo, pode usar <span class="modal-verb">couldn't</span> para ambos</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "I <span class="modal-verb">can</span> speak three languages." (🗣️ habilidade atual)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Futuro</span> "She <span class="modal-verb">will be able to</span> drive next month." (🚗 habilidade futura)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "He <span class="modal-verb">could</span> swim when he was 5." (🏊‍♂️ habilidade geral)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Deduction Card -->
+        <div class="flashcard deduction" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟣</span> Dedução
+            </div>
+            <div class="content">
+                <div class="question">Como fazer deduções lógicas com modal verbs?</div>
+                <div class="content">
+                    <div class="answer"><span class="modal-verb">Must</span> (certeza) ou <span class="modal-verb">Might</span> (possibilidade)</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="modal-verb">Must</span> → Quando você tem quase certeza (baseado em evidências)</p>
+                            <p><span class="check">✅</span> <span class="modal-verb">Might/May/Could</span> → Para possibilidades (incerteza)</p>
+                            <p><span class="check">⚠️</span> No passado: <span class="modal-verb">must have</span> + particípio</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "She <span class="modal-verb">must</span> be tired after the marathon." (🏁 evidência clara)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Futuro</span> "It <span class="modal-verb">might</span> snow tomorrow." (❄️ possibilidade)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "They <span class="modal-verb">must have</span> missed the train." (🚆 dedução passada)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function revealContent(card) {
+            const contents = card.querySelectorAll('.content');
+            let foundActive = false;
+            
+            contents.forEach(content => {
+                if (!foundActive && !content.classList.contains('active')) {
+                    content.classList.add('active');
+                    foundActive = true;
+                } else if (foundActive) {
+                    content.classList.remove('active');
+                }
+            });
+            
+            // Reset if all are active
+            if (!foundActive) {
+                contents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                contents[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
